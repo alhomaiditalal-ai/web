@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مستشار المبيعات الاحترافي</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@700;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --navy: #0A1628; --navy2: #0F1F3D; --navy3: #162847; --gold2: #DAA520; --gold3: #F5C842; --text: #F4F1EC; --muted: #8A99B3; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Cairo', sans-serif; background: var(--navy); color: var(--text); overflow-x: hidden; }
+
+    nav {
+      position: sticky; top: 0; z-index: 99;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 6%;
+      background: rgba(10,22,40,0.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(184,134,11,0.15);
+    }
+    .nav-logo { font-family: 'Tajawal', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--gold3); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: 0.88rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--gold3); }
+    .nav-phone { padding: 0.5rem 1.2rem; background: var(--gold2); color: var(--navy); border-radius: 4px; font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: background 0.3s; }
+    .nav-phone:hover { background: var(--gold3); }
+
+    .hero {
+      padding: 5rem 6% 4rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(218,165,32,0.07) 0%, transparent 70%);
+    }
+    .hero-lines {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(184,134,11,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(184,134,11,0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border: 1px solid rgba(245,200,66,0.4); border-radius: 50px; font-size: 0.75rem; color: var(--gold3); letter-spacing: 2px; margin-bottom: 1.5rem; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold3); animation: blink 1.5s infinite; }
+    .hero-name { font-family: 'Tajawal', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.15; margin-bottom: 0.75rem; }
+    .hero-name .hl { color: transparent; -webkit-text-stroke: 1.5px var(--gold2); }
+    .hero-role { font-size: 1rem; color: var(--gold2); font-weight: 700; letter-spacing: 2px; margin-bottom: 1.25rem; }
+    .hero-desc { color: var(--muted); font-size: 0.97rem; line-height: 1.9; margin: 0 auto 2rem; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; background: linear-gradient(135deg, var(--gold2), var(--gold3)); color: var(--navy); border-radius: 4px; font-family: 'Cairo', sans-serif; font-size: 0.95rem; font-weight: 700; text-decoration: none; transition: all 0.3s; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(218,165,32,0.3); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; font-family: 'Cairo', sans-serif; font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: all 0.3s; }
+    .btn-ghost:hover { border-color: var(--gold2); color: var(--gold2); }
+
+    .stats-bar { background: var(--navy2); border-top: 1px solid rgba(184,134,11,0.1); border-bottom: 1px solid rgba(184,134,11,0.1); padding: 2rem 6%; }
+    .stats-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat { text-align: center; padding: 0.75rem 1rem; border-left: 1px solid rgba(184,134,11,0.1); }
+    .stat:last-child { border: none; }
+    .stat-n { font-family: 'Tajawal', sans-serif; font-size: 2rem; font-weight: 900; color: var(--gold3); line-height: 1; }
+    .stat-l { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+
+    .services { padding: 4rem 6%; max-width: 1100px; margin: 0 auto; }
+    .sec-tag { font-size: 0.72rem; color: var(--gold2); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .sec-title { font-family: 'Tajawal', sans-serif; font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 900; margin-bottom: 0.6rem; }
+    .sec-desc { color: var(--muted); font-size: 0.93rem; line-height: 1.8; max-width: 520px; margin-bottom: 2rem; }
+    .gold-line { width: 45px; height: 3px; background: var(--gold2); margin-bottom: 1.5rem; border-radius: 2px; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+    .service-card { padding: 1.5rem; background: var(--navy2); border: 1px solid rgba(184,134,11,0.1); border-radius: 10px; transition: all 0.3s; }
+    .service-card:hover { border-color: rgba(184,134,11,0.4); transform: translateY(-4px); }
+    .s-icon { width: 44px; height: 44px; background: rgba(218,165,32,0.1); border: 1px solid rgba(218,165,32,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 0.9rem; }
+    .s-title { font-size: 0.93rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .s-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+    .why { background: var(--navy2); padding: 4rem 6%; }
+    .why-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
+    .why-list { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 1rem; }
+    .why-item { display: flex; align-items: flex-start; gap: 0.9rem; padding: 1rem 1.1rem; background: var(--navy); border: 1px solid rgba(184,134,11,0.1); border-radius: 8px; transition: border-color 0.3s; }
+    .why-item:hover { border-color: rgba(184,134,11,0.35); }
+    .check { width: 28px; height: 28px; flex-shrink: 0; background: rgba(218,165,32,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
+    .why-text h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .why-text p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+    .why-quote { background: linear-gradient(135deg, rgba(184,134,11,0.08), rgba(22,40,71,0.5)); border: 1px solid rgba(184,134,11,0.2); border-radius: 12px; padding: 2.5rem 2rem; text-align: center; }
+    .quote-mark { font-family: 'Tajawal', sans-serif; font-size: 4rem; color: var(--gold2); opacity: 0.15; line-height: 0.8; margin-bottom: 1rem; }
+    .quote-text { font-family: 'Tajawal', sans-serif; font-size: 1.15rem; font-weight: 700; line-height: 1.7; color: var(--text); margin-bottom: 1rem; }
+    .quote-sub { font-size: 0.82rem; color: var(--gold2); }
+
+    .contact { padding: 4rem 6%; max-width: 750px; margin: 0 auto; text-align: center; }
+    .contact-box { background: var(--navy2); border: 1px solid rgba(184,134,11,0.2); border-radius: 14px; padding: 3rem 2.5rem; }
+    .phone-big { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2.5rem; background: linear-gradient(135deg, var(--gold2), var(--gold3)); color: var(--navy); border-radius: 8px; font-family: 'Tajawal', sans-serif; font-size: 1.5rem; font-weight: 900; text-decoration: none; transition: all 0.3s; margin-bottom: 1.25rem; direction: ltr; }
+    .phone-big:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(218,165,32,0.3); }
+    .contact-note { font-size: 0.8rem; color: var(--muted); }
+    .social-row { display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; }
+    .social-btn { padding: 0.55rem 1.3rem; border: 1px solid rgba(184,134,11,0.25); border-radius: 50px; font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: all 0.3s; }
+    .social-btn:hover { border-color: var(--gold2); color: var(--gold2); }
+
+    footer { text-align: center; padding: 1.75rem 6%; border-top: 1px solid rgba(184,134,11,0.1); color: var(--muted); font-size: 0.78rem; }
+    footer span { color: var(--gold2); }
+
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat { border-left: none; border-bottom: 1px solid rgba(184,134,11,0.1); }
+      .why-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .contact-box { padding: 2rem 1.5rem; }
+      .phone-big { font-size: 1.2rem; padding: 0.9rem 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">مستشار المبيعات</div>
+  <ul class="nav-links">
+    <li><a onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">الخدمات</a></li>
+    <li><a onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'})">لماذا أنا</a></li>
+    <li><a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">تواصل</a></li>
+  </ul>
+  <a class="nav-phone" href="tel:0558046271">📞 0558046271</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <div class="hero-tag"><div class="dot"></div> متاح للتعاون الآن</div>
+    <h1 class="hero-name">خبير في <span class="hl">المبيعات</span> والإقناع</h1>
+    <p class="hero-role">✦ مستشار مبيعات احترافي</p>
+    <p class="hero-desc">أساعدك على تحقيق أهدافك البيعية وتطوير استراتيجيات مبيعات فعّالة. بخبرة واسعة في إدارة العملاء وإغلاق الصفقات، أقدم لك الحلول التي تحوّل الفرص إلى نتائج ملموسة.</p>
+    <div class="hero-btns">
+      <a class="btn-gold" href="tel:0558046271">📞 اتصل الآن</a>
+      <a class="btn-ghost" href="https://wa.me/966558046271" target="_blank">💬 واتساب</a>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-n">+500</div><div class="stat-l">صفقة ناجحة</div></div>
+    <div class="stat"><div class="stat-n">10+</div><div class="stat-l">سنوات خبرة</div></div>
+    <div class="stat"><div class="stat-n">+200</div><div class="stat-l">عميل راضٍ</div></div>
+    <div class="stat"><div class="stat-n">95%</div><div class="stat-l">نسبة النجاح</div></div>
+  </div>
+</div>
+
+<section class="services" id="services">
+  <p class="sec-tag">ماذا أقدم</p>
+  <h2 class="sec-title">خدماتي الاحترافية</h2>
+  <div class="gold-line"></div>
+  <p class="sec-desc">أقدم باقة متكاملة من خدمات الاستشارات البيعية المصممة لتحقيق أهدافك وتنمية أعمالك.</p>
+  <div class="services-grid">
+    <div class="service-card"><div class="s-icon">🎯</div><div class="s-title">استراتيجية المبيعات</div><div class="s-desc">بناء خطة مبيعات شاملة تناسب طبيعة عملك وسوقك المستهدف لتحقيق أقصى معدلات التحويل.</div></div>
+    <div class="service-card"><div class="s-icon">🤝</div><div class="s-title">إدارة العملاء</div><div class="s-desc">بناء علاقات قوية ومستدامة مع العملاء وتطوير مهارات التفاوض والإقناع لإغلاق المزيد من الصفقات.</div></div>
+    <div class="service-card"><div class="s-icon">📈</div><div class="s-title">تطوير فريق المبيعات</div><div class="s-desc">تدريب وتأهيل فريقك البيعي وتزويده بأحدث تقنيات المبيعات وأساليب الإقناع الفعّالة.</div></div>
+    <div class="service-card"><div class="s-icon">💡</div><div class="s-title">تحليل السوق</div><div class="s-desc">دراسة وتحليل السوق والمنافسين لاكتشاف الفرص الذهبية وبناء ميزة تنافسية حقيقية.</div></div>
+    <div class="service-card"><div class="s-icon">🔄</div><div class="s-title">تحسين عمليات البيع</div><div class="s-desc">مراجعة وتطوير دورة المبيعات الكاملة من توليد العملاء المحتملين حتى إتمام الصفقة.</div></div>
+    <div class="service-card"><div class="s-icon">📊</div><div class="s-title">قياس الأداء والنتائج</div><div class="s-desc">وضع مؤشرات الأداء الرئيسية ومتابعة النتائج بشكل دوري لضمان تحقيق الأهداف.</div></div>
+  </div>
+</section>
+
+<div class="why" id="why">
+  <div class="why-inner">
+    <div>
+      <p class="sec-tag">لماذا تختارني</p>
+      <h2 class="sec-title">الفرق الذي يصنعه الخبير</h2>
+      <div class="gold-line"></div>
+      <div class="why-list">
+        <div class="why-item"><div class="check">✓</div><div class="why-text"><h4>خبرة ميدانية حقيقية</h4><p>تجربة عملية في أصعب الأسواق وأكثر الصفقات تعقيداً.</p></div></div>
+        <div class="why-item"><div class="check">✓</div><div class="why-text"><h4>حلول مخصصة لك</h4><p>استراتيجية تناسب وضعك تحديداً وليس قوالب جاهزة.</p></div></div>
+        <div class="why-item"><div class="check">✓</div><div class="why-text"><h4>نتائج قابلة للقياس</h4><p>أهداف واضحة بأرقام يمكن قياسها ومتابعتها شهرياً.</p></div></div>
+        <div class="why-item"><div class="check">✓</div><div class="why-text"><h4>متابعة مستمرة</h4><p>أرافقك خطوة بخطوة حتى تحقيق الهدف كاملاً.</p></div></div>
+      </div>
+    </div>
+    <div class="why-quote">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">المبيعات ليست فن الإقناع فقط، بل هي فن بناء الثقة وتقديم القيمة الحقيقية للعميل.</p>
+      <p class="quote-sub">— مستشار المبيعات</p>
+    </div>
+  </div>
+</div>
+
+<section class="contact" id="contact">
+  <div class="contact-box">
+    <p class="sec-tag" style="text-align:center">ابدأ الآن</p>
+    <h2 class="sec-title" style="margin-bottom:0.6rem">جاهز لتحقيق أهدافك البيعية؟</h2>
+    <p class="sec-desc" style="margin: 0.5rem auto 1.75rem">جلسة استشارية مجانية نناقش فيها وضعك وكيف أساعدك.</p>
+    <a class="phone-big" href="tel:0558046271">📞 0558046271</a>
+    <p class="contact-note">متاح من السبت إلى الخميس · 9 صباحاً – 9 مساءً</p>
+    <div class="social-row">
+      <a class="social-btn" href="https://wa.me/966558046271" target="_blank">💬 واتساب</a>
+      <a class="social-btn" href="tel:0558046271">📞 اتصال مباشر</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>جميع الحقوق محفوظة © 2025 · مستشار مبيعات احترافي · <span>0558046271</span></p>
+</footer>
+
+</body>
+</html>
